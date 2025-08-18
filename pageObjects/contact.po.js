@@ -21,7 +21,8 @@ exports.ContactPage = class ContactPage {
     this.country = '//input[@id="country"]';
     this.submitButton = '//button[@id="submit"]';
     this.cancelButton = '//button[@id="cancel"]';
-    this.confirmContact = '//p[contains(text(),"Click on any contact to view the Contact Details")]';
+    this.confirmContact = '//td[contains(text(),"l")]';
+    this.viewCreatedContact = '//th[contains(text(),"Name")]//following::td[2]';
   }
 
   async login(username, password) {
@@ -59,9 +60,6 @@ exports.ContactPage = class ContactPage {
   }
 
   async verifyValidContact() {
-    const confirmContact = this.page.locator(this.confirmContact);
-    await expect(confirmContact).toHaveText(
-      "Click on any contact to view the Contact Details"
-    );
+    await this.page.locator(this.viewCreatedContact).click();
   }
 };

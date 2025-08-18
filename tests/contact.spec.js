@@ -4,15 +4,12 @@ const testData = require('../fixtures/contactFixtures.json');
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
+  await contact.login("pranavkarmacharya@gmail.com", "pranavkarmacharya123");
 });
 
 test.describe('Valid contact tests', () => {
   test('Valid Contact', async ({ page }) => {
     const contact = new ContactPage(page);
-
-
-    await contact.login("pranavkarmacharya@gmail.com", "pranavkarmacharya123");
-
 
     await contact.addContact(
       testData.validContact.FirstName,
@@ -26,8 +23,10 @@ test.describe('Valid contact tests', () => {
       testData.validContact.StateofProvience, 
       testData.validContact.postalCode,     
       testData.validContact.Country
+      
     );
 
-    await contact.verifyValidContact();
+    await contact.verifyValidContact(
+    );
   });
 });
