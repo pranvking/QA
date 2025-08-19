@@ -1,14 +1,17 @@
 import { expect, test } from "@playwright/test";
-import { ContactPage } from "../pageObjects/contact.po.js"; 
-const testData = require('../fixtures/contactFixtures.json');
+import { ContactPage } from "../pageObjects/contact.po.js";
+import { LoginPage } from "../pageObjects/login.po.js";
+const testData = require("../fixtures/contactFixtures.json");
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('/');
-  await contact.login("pranavkarmacharya@gmail.com", "pranavkarmacharya123");
+  await page.goto("/");
+  const login = new LoginPage(page);
+  await login.login("pranavkarmacharya@gmail.com", "pranavkarmacharya123");
+  await login.verifyValidlogin();
 });
 
-test.describe('Valid contact tests', () => {
-  test('Valid Contact', async ({ page }) => {
+test.describe("Valid contact tests", () => {
+  test("Valid Contact", async ({ page }) => {
     const contact = new ContactPage(page);
 
     await contact.addContact(
@@ -20,13 +23,11 @@ test.describe('Valid contact tests', () => {
       testData.validContact.StreetAddress1,
       testData.validContact.StreetAddress2,
       testData.validContact.City,
-      testData.validContact.StateofProvience, 
-      testData.validContact.postalCode,     
+      testData.validContact.StateofProvience,
+      testData.validContact.postalCode,
       testData.validContact.Country
-      
     );
 
-    await contact.verifyValidContact(
-    );
+    await contact.verifyValidContact();
   });
 });

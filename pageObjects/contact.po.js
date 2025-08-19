@@ -25,12 +25,6 @@ exports.ContactPage = class ContactPage {
     this.viewCreatedContact = '//th[contains(text(),"Name")]//following::td[2]';
   }
 
-  async login(username, password) {
-    await this.page.locator(this.usernameInput).fill(username);
-    await this.page.locator(this.passwordInput).fill(password);
-    await this.page.locator(this.loginButton).click();
-  }
-
   async addContact(
     FirstName,
     LastName,
