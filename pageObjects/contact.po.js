@@ -23,6 +23,9 @@ exports.ContactPage = class ContactPage {
     this.cancelButton = '//button[@id="cancel"]';
     this.confirmContact = '//td[contains(text(),"l")]';
     this.viewCreatedContact = '//th[contains(text(),"Name")]//following::td[2]';
+    this.editContact = "//button[@id='edit-contact']";
+    this.deleteContact="//button[@id='delete']";
+
   }
 
   async addContact(
@@ -54,6 +57,23 @@ exports.ContactPage = class ContactPage {
   }
 
   async verifyValidContact() {
-    await this.page.locator(this.viewCreatedContact).click();
+await this.page.locator(this.viewCreatedContact).click();
   }
+
+  async contactEdit(firstName){
+    await this.page.locator(this.editContact.click());
+    await this.page.waitForTimeout(2000);
+    await this.page.locator(this.firstName).clear();
+    await this.page.locator(this.firstName).fill(firstName);
+    await this.page.waitForTimeout(2000);
+    await this.page.locator(this.Save).click();
+  }
+   async contactDelete(){
+    await this.page.waitForTimeout(2000);
+    this.page.once('dialog',async dialog=>{
+      console.log('doalog message:${dialog.message()}');
+      await dialog.accept();
+    })
+    await this.page.locator(this.page.locator(this.deleteContact).click());
+   }
 };

@@ -24,5 +24,18 @@
        "State of Provience":"",
        "postalCode":"",
        "Country":""
+    },
+        "editContact": {
+       "FirstName":"Hawa",
+       "LastName":"Edit",
+       "Date of Birth":"2000-07-15",
+       "Email":"pranavkarmacharya@gmail.com",
+       "Phone":"1234567890",
+       "Street Address 1":"asdasd",
+       "Street Address 2":"asdsad",
+       "City":"asdasd",
+       "State of Provience":"asdasd",
+       "postalCode":"asdasda",
+       "Country":"asdasdas"
     }
 }
